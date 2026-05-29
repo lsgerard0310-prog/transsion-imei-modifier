@@ -12,13 +12,13 @@ AES_KEY_STRING = "FunAESKey0015y83rEslYufMeXITEZ3VM0SBetu#QgsAaLl7RzwY1KPeb8j9yx
 
 TARGET_IMEI = "357577941359537"
 
-# Datos encriptados NV0S (sin espacios - 64 bytes)
+# Datos encriptados NV0S (64 bytes - sin espacios)
 NV0S_ENCRYPTED = "004ea430ab6dbfb935c9d46bf82b66f4ffb15bcf5492404646ca362b9407d4990b8b505dd30253" \
                  "9c8e6284918511ecfe3fc89e2ee39625b9b8df047fd94747ca859116" \
                  "3a6bdeedd15900c0f534deee8cc642b"
 
-# Datos encriptados NV01 (sin espacios - 32 bytes)
-NV01_ENCRYPTED = "25b844d239720 5b98d9cc22a211c654f64d01f548bbd86e4a1e73e29cac8b5e2"
+# Datos encriptados NV01 (32 bytes - CORREGIDO sin espacios)
+NV01_ENCRYPTED = "25b844d239720 5b98d9cc22a211c654f64d01f548bbd86e4a1e73e29cac8b5e2".replace(" ", "")
 
 def normalize_aes_key(key_string):
     """Normaliza clave usando SHA256"""
@@ -90,6 +90,8 @@ try:
     print(f"[+] NV01: {len(nv01_data)} bytes")
 except ValueError as e:
     print(f"[-] Error al procesar hex: {e}")
+    print(f"[DEBUG] NV0S length: {len(NV0S_ENCRYPTED)}")
+    print(f"[DEBUG] NV01 length: {len(NV01_ENCRYPTED)}")
     exit(1)
 
 # ========================================================================
